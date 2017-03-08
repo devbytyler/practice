@@ -5,12 +5,15 @@ require 'terminal-table'
 def format(grid)
   rows = []
   first_line = true
+  row_headers = ('A'..'J').to_a
+  grab_index = 0
   grid.each do |l|
     rows << :separator if !first_line
-    rows << l
+    rows << l.unshift(row_headers[grab_index])
+    grab_index += 1
     first_line = false
   end
-  table = Terminal::Table.new :headings => ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],  :rows => rows
+  table = Terminal::Table.new :headings => [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],  :rows => rows
   puts table
 end
 
